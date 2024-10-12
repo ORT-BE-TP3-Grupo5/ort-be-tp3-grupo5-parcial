@@ -8,12 +8,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.R
 
 @Composable
@@ -21,8 +21,8 @@ fun SubmitReusableButton(
     navController: NavController,
     destination: String,
     buttonText: String,
-    buttonWidth: Int,
-    buttonHeight: Int,
+    buttonWidth: Int = 364,
+    buttonHeight: Int = 67,
     buttonColor: Color = Color(0xFF34A853),
     textColor: Color = Color.White
 ) {
@@ -34,8 +34,7 @@ fun SubmitReusableButton(
         colors = ButtonDefaults.buttonColors(
             containerColor = buttonColor
         )
-    )
-    {
+    ) {
         Text(
             text = buttonText,
             color = textColor,

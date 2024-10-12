@@ -31,10 +31,10 @@ fun OnboardingScreen(navController: NavController) {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.TopCenter
     ) {
-        BackgroundImage() // Fondo
-        Logo()            // Logo
-        WelcomeText()      // Texto de bienvenida
-        SecondaryText() // Texto secundario
+        BackgroundImage()
+        Logo()
+        WelcomeText()
+        SecondaryText()
         OnboardingButton(navController)
     }
 }
@@ -53,9 +53,7 @@ fun OnboardingButton(navController: NavController) {
             destination = "signin",
             buttonText = "Get Started",
             buttonWidth = 353,
-            buttonHeight = 67,
-            buttonColor = Color(0xFF34A853),
-            textColor = Color.White
+            buttonHeight = 67
         )
     }
 }
