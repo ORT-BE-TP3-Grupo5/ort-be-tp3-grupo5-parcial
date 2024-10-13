@@ -8,6 +8,6 @@ const val splashRoute = "splash"
 
 fun NavGraphBuilder.splashScreen(navController: NavController) {
     composable(route = splashRoute) {
-        SplashcreenInit(navController)
+        SplashScreenInit(navController)
     }
 }
