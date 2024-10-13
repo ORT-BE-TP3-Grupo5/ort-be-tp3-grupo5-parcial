@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.ortbetp3grupo5parcial.screens.onboarding.onboardingScreen
+import com.example.ortbetp3grupo5parcial.screens.signin.signInScreen
 import com.example.ortbetp3grupo5parcial.screens.splash.splashRoute
 import com.example.ortbetp3grupo5parcial.screens.splash.splashScreen
 import com.example.ortbetp3grupo5parcial.ui.theme.OrtBeTp3Grupo5ParcialTheme
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     splashScreen(navController)    // Ruta Splash
                     onboardingScreen(navController) // Ruta Onboarding
-                    //signinScreen(navController)    // Ruta SignIn
+                    signInScreen()    // Ruta SignIn
                 }
             }
         }

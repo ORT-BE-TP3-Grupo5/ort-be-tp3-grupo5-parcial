@@ -50,7 +50,7 @@ fun OnboardingButton(navController: NavController) {
     ) {
         SubmitReusableButton(
             navController = navController,
-            destination = "signin",
+            destination = "signIn",
             buttonText = "Get Started",
             buttonWidth = 353,
             buttonHeight = 67
