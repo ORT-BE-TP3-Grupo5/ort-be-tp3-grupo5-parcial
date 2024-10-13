@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.example.ortbetp3grupo5parcial.screens.forgotPassword.forgotPasswordScreen
 import com.example.ortbetp3grupo5parcial.screens.onboarding.onboardingScreen
 import com.example.ortbetp3grupo5parcial.screens.signin.signInScreen
 import com.example.ortbetp3grupo5parcial.screens.splash.splashRoute
@@ -26,6 +27,7 @@ class MainActivity : ComponentActivity() {
                     splashScreen(navController)    // Ruta Splash
                     onboardingScreen(navController) // Ruta Onboarding
                     signInScreen(navController)    // Ruta SignIn
+                    forgotPasswordScreen(navController)
                 }
             }
         }

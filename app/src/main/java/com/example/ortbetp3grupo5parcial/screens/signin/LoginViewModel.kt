@@ -1,5 +1,6 @@
 package com.example.ortbetp3grupo5parcial.screens.signin
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,16 +10,17 @@ import com.example.ortbetp3grupo5parcial.network.RetrofitClient
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
-    val loginResponse = MutableLiveData<LoginResponse>()
-    val loginError = MutableLiveData<String>()
+
+    private val _loginResult = MutableLiveData<Result<LoginResponse>>()
+    val loginResult: LiveData<Result<LoginResponse>> get() = _loginResult
 
     fun login(username: String, password: String) {
         viewModelScope.launch {
             try {
                 val response = RetrofitClient.authService.login(LoginRequest(username, password))
-                loginResponse.postValue(response)
+                _loginResult.value = Result.success(response)
             } catch (e: Exception) {
-                loginError.postValue("Error: ${e.message}")
+                _loginResult.value = Result.failure(e)
             }
         }
     }
