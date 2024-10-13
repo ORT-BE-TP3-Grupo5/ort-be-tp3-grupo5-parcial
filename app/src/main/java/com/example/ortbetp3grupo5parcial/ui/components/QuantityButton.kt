@@ -14,17 +14,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.ortbetp3grupo5parcial.R
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray20
+import com.example.ortbetp3grupo5parcial.ui.theme.Gray40
 import com.example.ortbetp3grupo5parcial.ui.theme.Green40
 
 @Composable
 fun QuantityButton(
     onClick: () -> Unit,
     invertedColors: Boolean = false,
-   iconResource: Int = R.drawable.ic_quantity_add
+    disabled: Boolean = false,
+    iconResource: Int = R.drawable.ic_quantity_add
+
 ) {
+    val disabledColor: Color = Gray40
     var backgroundColor: Color
     var iconColor: Color
     var borderColor: Color
+
 
     if (invertedColors) {
         backgroundColor = Color.White
@@ -38,6 +43,7 @@ fun QuantityButton(
 
     IconButton(
         onClick = onClick,
+        enabled = !disabled,
         modifier = Modifier
             .size(48.dp)
             .clip(RoundedCornerShape(17.dp))
@@ -47,7 +53,7 @@ fun QuantityButton(
         Icon(
             painter = painterResource(id = iconResource),
             contentDescription = "Increment",
-            tint = iconColor
+            tint = if (disabled) disabledColor else iconColor
         )
     }
 }
