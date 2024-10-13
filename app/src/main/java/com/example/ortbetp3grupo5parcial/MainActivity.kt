@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     splashScreen(navController)    // Ruta Splash
                     onboardingScreen(navController) // Ruta Onboarding
-                    signInScreen()    // Ruta SignIn
+                    signInScreen(navController)    // Ruta SignIn
                 }
             }
         }
