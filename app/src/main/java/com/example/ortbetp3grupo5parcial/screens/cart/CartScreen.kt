@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,47 +19,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.R
-import com.example.ortbetp3grupo5parcial.models.CartItemData
 import com.example.ortbetp3grupo5parcial.ui.components.Footer
 import com.example.ortbetp3grupo5parcial.ui.components.Header
 import com.example.ortbetp3grupo5parcial.ui.components.SubmitReusableButton
 import com.example.ortbetp3grupo5parcial.ui.components.cart.CartItem
+import com.example.ortbetp3grupo5parcial.ui.components.checkout.CheckoutConfirmationModal
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray20
+import com.example.ortbetp3grupo5parcial.data.CartProductsRepository
 import java.util.Locale
 
 @Composable
 fun CartScreen(navController: NavController) {
 
-    var items by remember { mutableStateOf(listOf(
-        CartItemData(
-            imageResource = R.drawable.cart_bell_pepper_red,
-            name = "Bell Pepper Red",
-            quantityInfo = "1kg, Price",
-            quantity = 1,
-            price = 4.99
-        ),
-        CartItemData(
-            imageResource = R.drawable.cart_eggs,
-            name = "Egg Chicken Red",
-            quantityInfo = "4pcs, Price",
-            quantity = 1,
-            price = 1.99
-        ),
-        CartItemData(
-            imageResource = R.drawable.cart_bananas,
-            name = "Organic Bananas",
-            quantityInfo = "12kg, Price",
-            quantity = 1,
-            price = 3.00
-        ),
-        CartItemData(
-            imageResource = R.drawable.cart_ginger,
-            name = "Ginger",
-            quantityInfo = "250gm, Price",
-            quantity = 1,
-            price = 2.99
+    var items by remember { mutableStateOf(CartProductsRepository.getCartItems())}
+    val totalCost by remember { derivedStateOf { items.sumOf { it.price * it.quantity }.toDouble()}}
+
+    var showCheckoutConfirmationModal by remember { mutableStateOf(false) }
+    when{
+        showCheckoutConfirmationModal -> CheckoutConfirmationModal(
+            onDismissRequest = { showCheckoutConfirmationModal = false },
+            onConfirmation = { navController.navigate("checkout") },
+            totalCost = totalCost,
         )
-    ))}
+    }
 
     Column(modifier = Modifier.fillMaxSize()) {
         Header(
@@ -100,8 +83,10 @@ fun CartScreen(navController: NavController) {
         ) {
             SubmitReusableButton(
                 buttonText = "Go to Checkout",
-                onClick = { /* TODO */  },
-                secondaryText = String.format(Locale.US, "%.2f",items.sumOf { it.price * it.quantity }.toDouble()))
+                onClick = {
+                    showCheckoutConfirmationModal = true
+                },
+                secondaryText = String.format(Locale.US, "%.2f", totalCost),)
         }
         Footer(navController)
     }
