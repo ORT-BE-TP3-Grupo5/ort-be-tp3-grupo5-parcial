@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.ortbetp3grupo5parcial.R
+import com.example.ortbetp3grupo5parcial.screens.account.accountRoute
 
 @Composable
 fun Footer(navController: NavController) {
@@ -164,7 +165,7 @@ fun Footer(navController: NavController) {
                     indicatorColor = Color.Transparent
                 ),
                 onClick = {
-                    navController.navigate("account") {
+                    navController.navigate(accountRoute) {
                         popUpTo(navController.graph.startDestinationId) { saveState = true }
                         launchSingleTop = true
                         restoreState = true
