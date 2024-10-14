@@ -36,8 +36,10 @@ fun NectarInputField(
     value: String,
     onValueChange: (String) -> Unit,
     labelType: String,
-    isPasswordField: Boolean = false
+    isPasswordField: Boolean = false,
+    modifier: Modifier = Modifier
 ) {
+
     var passwordVisible by remember { mutableStateOf(false) }
 
     val poppinsMedium = FontFamily(
@@ -47,7 +49,7 @@ fun NectarInputField(
     val isEmailField = labelType == "Email"
     val isEmailValid = isEmailField && value.contains("@") && value.contains(".")
 
-    Column {
+    Column(modifier = modifier) {
         InputLabel(labelType = labelType, fontFamily = poppinsMedium)
 
         Row(
@@ -67,20 +69,24 @@ fun NectarInputField(
                 textStyle = LocalTextStyle.current.copy(
                     color = Color.Black,
                     fontSize = 20.sp,
-                    fontFamily = poppinsMedium,  // Aplicar la fuente Poppins_SemiBold al texto ingresado
+                    fontFamily = poppinsMedium,
                     fontWeight = FontWeight.Medium
                 ),
                 decorationBox = { innerTextField ->
                     Column {
                         innerTextField()
-                        // Línea inferior (Divider) que simula la línea del TextField
                         HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
                     }
                 },
                 modifier = Modifier
                     .weight(1f)
             )
-            ShowIcon(isEmailValid = isEmailValid, isPasswordField = isPasswordField, passwordVisible = passwordVisible) {
+
+            ShowIcon(
+                isEmailValid = isEmailValid,
+                isPasswordField = isPasswordField,
+                passwordVisible = passwordVisible
+            ) {
                 passwordVisible = it
             }
         }
