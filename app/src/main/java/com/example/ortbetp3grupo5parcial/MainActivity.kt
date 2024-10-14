@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.ortbetp3grupo5parcial.screens.forgotPassword.forgotPasswordScreen
+import com.example.ortbetp3grupo5parcial.screens.location.selectLocationScreen
 import com.example.ortbetp3grupo5parcial.screens.onboarding.onboardingScreen
 import com.example.ortbetp3grupo5parcial.screens.privacypolicy.privacyPolicyScreen
 import com.example.ortbetp3grupo5parcial.screens.signin.signInScreen
@@ -34,6 +35,7 @@ class MainActivity : ComponentActivity() {
                     signUpScreen(navController)
                     termsOfServiceScreen(navController)  // Ruta de Términos de Servicio
                     privacyPolicyScreen(navController)
+                    selectLocationScreen(navController)
 
                 }
             }
