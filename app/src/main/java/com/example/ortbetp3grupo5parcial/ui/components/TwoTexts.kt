@@ -1,5 +1,6 @@
 package com.example.ortbetp3grupo5parcial.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -20,7 +21,8 @@ fun TwoTextsComponent(
     secondText: String,
     firstTextColor: Color = Color(0xFF181725),
     secondTextColor: Color = Color(0xFF34A853),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onSecondTextClick: (() -> Unit)? = null // Callback para el segundo texto
 ) {
     val gilroyFont = FontFamily(Font(R.font.poppins_semibold))
 
@@ -33,18 +35,22 @@ fun TwoTextsComponent(
             color = firstTextColor,
             lineHeight = 15.13.sp,
             letterSpacing = 0.05.em,
-            modifier = Modifier.padding(end = 4.dp)  // Espacio entre los dos textos
+            modifier = Modifier.padding(end = 4.dp)
         )
 
-        // Segundo texto
-        Text(
-            text = secondText,
-            fontFamily = gilroyFont,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = secondTextColor,
-            lineHeight = 15.13.sp,
-            letterSpacing = 0.05.em
-        )
+        if (onSecondTextClick != null) {
+            Text(
+                text = secondText,
+                fontFamily = gilroyFont,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = secondTextColor,
+                lineHeight = 15.13.sp,
+                letterSpacing = 0.05.em,
+                modifier = Modifier
+                    .clickable(onClick = onSecondTextClick)
+                    .padding(end = 4.dp)
+            )
+        }
     }
 }

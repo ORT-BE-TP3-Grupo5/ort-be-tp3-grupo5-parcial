@@ -8,9 +8,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.ortbetp3grupo5parcial.screens.forgotPassword.forgotPasswordScreen
 import com.example.ortbetp3grupo5parcial.screens.onboarding.onboardingScreen
+import com.example.ortbetp3grupo5parcial.screens.privacypolicy.privacyPolicyScreen
 import com.example.ortbetp3grupo5parcial.screens.signin.signInScreen
+import com.example.ortbetp3grupo5parcial.screens.singup.signUpScreen
 import com.example.ortbetp3grupo5parcial.screens.splash.splashRoute
 import com.example.ortbetp3grupo5parcial.screens.splash.splashScreen
+import com.example.ortbetp3grupo5parcial.screens.termsofservice.termsOfServiceScreen
 import com.example.ortbetp3grupo5parcial.ui.theme.OrtBeTp3Grupo5ParcialTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,6 +31,10 @@ class MainActivity : ComponentActivity() {
                     onboardingScreen(navController) // Ruta Onboarding
                     signInScreen(navController)    // Ruta SignIn
                     forgotPasswordScreen(navController)
+                    signUpScreen(navController)
+                    termsOfServiceScreen(navController)  // Ruta de Términos de Servicio
+                    privacyPolicyScreen(navController)
+
                 }
             }
         }
