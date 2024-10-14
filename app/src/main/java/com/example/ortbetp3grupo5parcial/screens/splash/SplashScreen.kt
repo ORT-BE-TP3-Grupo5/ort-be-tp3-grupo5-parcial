@@ -19,7 +19,7 @@ import com.example.ortbetp3grupo5parcial.R
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashcreenInit(navController: NavController) {
+fun SplashScreenInit(navController: NavController) {
     LaunchedEffect(Unit) {
         delay(3000L)
         navController.navigate("onboarding") {

@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.ortbetp3grupo5parcial"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.ortbetp3grupo5parcial"
@@ -61,10 +61,11 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.material3.window.size)
+    implementation(libs.androidx.material3.adaptive.nav)
     implementation(libs.androidx.navigation.common.ktx)
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.foundation.layout.android)
     implementation(libs.androidx.foundation.layout.android)
     implementation(libs.androidx.foundation.android)
     implementation(libs.litert.support.api)
