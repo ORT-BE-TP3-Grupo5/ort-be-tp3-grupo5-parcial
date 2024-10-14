@@ -1,10 +1,10 @@
 package com.example.ortbetp3grupo5parcial.screens.location
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,8 +15,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -25,7 +25,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -42,6 +41,7 @@ import com.example.ortbetp3grupo5parcial.data.AreaRepository
 import com.example.ortbetp3grupo5parcial.data.ZonaRepository
 import com.example.ortbetp3grupo5parcial.models.Area
 import com.example.ortbetp3grupo5parcial.models.Zona
+import com.example.ortbetp3grupo5parcial.screens.singup.signUpRoute
 import com.example.ortbetp3grupo5parcial.ui.components.SubmitReusableButton
 
 @Composable
@@ -50,7 +50,6 @@ fun SelectLocationScreen(navController: NavController) {
     var selectedZona by remember { mutableStateOf<Zona?>(null) }
     var selectedArea by remember { mutableStateOf<Area?>(null) }
 
-    // Obtener las listas de zonas y áreas desde los repositorios
     val zonas = ZonaRepository.getZonas()
     val areas = AreaRepository.getAreas()
 
@@ -62,6 +61,17 @@ fun SelectLocationScreen(navController: NavController) {
             modifier = Modifier
                 .width(420.83.dp)
                 .height(896.dp)
+        )
+
+        Icon(
+            painter = painterResource(id = R.drawable.icon_back),
+            contentDescription = "Back Icon",
+            modifier = Modifier
+                .size(width = 10.dp, height = 18.dp)
+                .offset(x = 25.01.dp, y = 56.83.dp)
+                .clickable {
+                    navController.navigate(signUpRoute)
+                }
         )
 
         Image(
@@ -115,17 +125,29 @@ fun SelectLocationScreen(navController: NavController) {
 
         }
 
-        ZonaDropdownMenu(
-            zonas = zonas,
-            selectedZona = selectedZona,
-            onZonaSelected = { zona ->
-                selectedZona = zona
-            },
+        CustomDropdownMenu(
+            items = zonas,
+            selectedItem = selectedZona,
+            onItemSelected = { zona -> selectedZona = zona },
+            label = "Your Zone",
+            placeholderText = "Select Your Zone",
             modifier = Modifier
-                .offset(x = 15.88.dp, y = 521.dp)
+                .fillMaxWidth()
+                .offset(x = 9.88.dp, y = 521.dp),
+            itemLabel = { it.nombre }
         )
 
-        Spacer(modifier = Modifier.height(20.dp))
+        CustomDropdownMenu(
+            items = areas,
+            selectedItem = selectedArea,
+            onItemSelected = { area -> selectedArea = area },
+            label = "Your Area",
+            placeholderText = "Types of your area",
+            modifier = Modifier
+                .fillMaxWidth()
+                .offset(x = 9.88.dp, y = 629.55.dp),
+            itemLabel = { it.nombre }
+        )
 
         LocationButton(navController)
     }
@@ -134,32 +156,42 @@ fun SelectLocationScreen(navController: NavController) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ZonaDropdownMenu(
-    zonas: List<Zona>,
-    selectedZona: Zona?,
-    onZonaSelected: (Zona) -> Unit,
-    modifier: Modifier = Modifier
+fun <T> CustomDropdownMenu(
+    items: List<T>,
+    selectedItem: T?,
+    onItemSelected: (T) -> Unit,
+    label: String,
+    placeholderText: String,
+    modifier: Modifier = Modifier,
+    itemLabel: (T) -> String
 ) {
     var expanded by remember { mutableStateOf(false) }
 
     ExposedDropdownMenuBox(
         expanded = expanded,
         onExpandedChange = { expanded = !expanded },
-        modifier = modifier // Aplicamos el modificador aquí
+        modifier = modifier
     ) {
         TextField(
-            value = selectedZona?.nombre ?: "Select Your Zone",
+            value = selectedItem?.let(itemLabel) ?: placeholderText,
             onValueChange = {},
-            readOnly = true, // El campo es de solo lectura
+            readOnly = true,
             label = {
                 Text(
-                    text = "Your Zone",
+                    text = label,
                     fontSize = 16.sp,
                     fontFamily = FontFamily(Font(R.font.poppins_medium)),
-                    color =  Color(0xFF7C7C7C))
+                    color = Color(0xFF7C7C7C)
+                )
             },
             trailingIcon = {
-                ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                IconButton(onClick = { expanded = !expanded }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.desplegable), // Reemplaza por tu icono
+                        contentDescription = "Icono personalizado desplegable",
+                        modifier = Modifier.size(width = 10.dp, height = 15.dp)
+                    )
+                }
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -175,21 +207,20 @@ fun ZonaDropdownMenu(
 
         ExposedDropdownMenu(
             expanded = expanded,
-            onDismissRequest = { expanded = false } // Cierra el menú cuando se hace clic fuera de él
+            onDismissRequest = { expanded = false }
         ) {
-            zonas.forEach { zona ->
+            items.forEach { item ->
                 DropdownMenuItem(
-                    text = { Text(zona.nombre) },
+                    text = { Text(itemLabel(item)) },
                     onClick = {
-                        onZonaSelected(zona)
-                        expanded = false // Cierra el menú cuando se selecciona una opción
+                        onItemSelected(item)
+                        expanded = false
                     }
                 )
             }
         }
     }
 }
-
 
 @Composable
 fun LocationButton(navController: NavController) {
@@ -203,7 +234,7 @@ fun LocationButton(navController: NavController) {
             buttonWidth = 364,
             buttonHeight = 67,
             onClick = {
-                navController.navigate("signIn")
+                navController.navigate("homeScreen")
             }
         )
     }

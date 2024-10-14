@@ -126,7 +126,7 @@ fun SignInScreen(navController: NavController, loginViewModel: LoginViewModel = 
                 loginResult?.let { result ->
                     when {
                         result.isSuccess -> {
-                            navController.navigate("splash") {
+                            navController.navigate("homeScreen") {
                                 popUpTo(navController.graph.startDestinationId) { inclusive = true }
                             }
                         }
