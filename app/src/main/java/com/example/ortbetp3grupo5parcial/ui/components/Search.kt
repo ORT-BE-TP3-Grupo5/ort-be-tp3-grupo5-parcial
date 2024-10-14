@@ -21,7 +21,6 @@ import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.R
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Search(navController: NavController) {
     var searchQuery by remember { mutableStateOf("") }
@@ -77,8 +76,9 @@ fun Search(navController: NavController) {
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight(),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent
                 )
