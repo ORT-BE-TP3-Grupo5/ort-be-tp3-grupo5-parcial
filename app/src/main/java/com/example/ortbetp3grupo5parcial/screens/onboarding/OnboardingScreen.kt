@@ -49,11 +49,12 @@ fun OnboardingButton(navController: NavController) {
         contentAlignment = Alignment.Center
     ) {
         SubmitReusableButton(
-            navController = navController,
-            destination = "signin",
             buttonText = "Get Started",
             buttonWidth = 353,
-            buttonHeight = 67
+            buttonHeight = 67,
+            onClick = {
+                navController.navigate("signIn")
+            }
         )
     }
 }

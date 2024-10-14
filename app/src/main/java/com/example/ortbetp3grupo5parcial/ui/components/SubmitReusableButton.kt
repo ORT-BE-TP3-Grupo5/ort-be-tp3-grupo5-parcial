@@ -13,13 +13,11 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.R
 
 @Composable
 fun SubmitReusableButton(
-    navController: NavController,
-    destination: String,
+    onClick: () -> Unit,
     buttonText: String,
     buttonWidth: Int = 364,
     buttonHeight: Int = 67,
@@ -27,7 +25,7 @@ fun SubmitReusableButton(
     textColor: Color = Color.White
 ) {
     Button(
-        onClick = { navController.navigate(destination) },
+        onClick = onClick,
         modifier = Modifier
             .width(buttonWidth.dp)
             .height(buttonHeight.dp),
