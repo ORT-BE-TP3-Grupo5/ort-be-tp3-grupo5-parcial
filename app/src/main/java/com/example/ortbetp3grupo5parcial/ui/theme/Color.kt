@@ -2,6 +2,8 @@ package com.example.ortbetp3grupo5parcial.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+val Gray90 = Color(0xFF201A18)
+
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)

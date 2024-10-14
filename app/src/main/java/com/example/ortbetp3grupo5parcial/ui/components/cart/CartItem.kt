@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -26,100 +25,99 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ortbetp3grupo5parcial.R
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray40
+import java.util.Locale
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun CartItem(
     imageResource: Int,
     name: String,
     quantityInfo: String,
-    price: String,
+    price: Double,
     onRemoveClick: () -> Unit,
-    onQuantityChange: (Int) -> Unit
+    onQuantityChange: (Int) -> Unit,
+    currency: String = "$",
+    modifier: Modifier = Modifier
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-    ) {
-        Box(  modifier = Modifier.size(76.dp).align(Alignment.CenterVertically)) {
-            // Imagen del producto
-            Image(
-                painter = painterResource(id = imageResource),
-                contentDescription = name,
-                modifier = Modifier
-                    .fillMaxSize(),
-                contentScale = ContentScale.FillWidth
-            )
-        }
-
-        Spacer(modifier = Modifier.width(34.dp))
-
-        //Nombre producto
-        Column(
+    Box( modifier = modifier){
+        Row(
             modifier = Modifier
-                .align(Alignment.Top)
+                .fillMaxWidth()
         ) {
-            Row( modifier = Modifier
-                .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.Top
-            ) {
-                Text(
-                    text = name,
-                    fontWeight = FontWeight.Bold,
-                    lineHeight = 16.sp,
-                    fontSize = 16.sp,
+            Box(  modifier = Modifier.size(76.dp).align(Alignment.CenterVertically)) {
+                // Imagen del producto
+                Image(
+                    painter = painterResource(id = imageResource),
+                    contentDescription = name,
                     modifier = Modifier
-                        .align(Alignment.Top)
+                        .fillMaxSize(),
+                    contentScale = ContentScale.FillWidth
                 )
-                IconButton(
-                    onClick = onRemoveClick,
-                    modifier = Modifier
-                        .size(18.dp)
-                        .align(Alignment.Top)
-                ) {
-                    Icon(
-                        painter = painterResource(id= R.drawable.ic_remove),
-                        contentDescription = "Remove",
-                        tint = Gray40
-                    )
-                }
             }
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween
+
+            Spacer(modifier = Modifier.width(34.dp))
+
+            Column(
+                modifier = Modifier
+                    .align(Alignment.Top)
             ) {
-                Column() {
+                Row( modifier = Modifier
+                    .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.Top
+                ) {
+                    //Nombre producto
                     Text(
-                        text = quantityInfo,
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 14.sp,
-                        color = Color.Gray
+                        text = name,
+                        fontWeight = FontWeight.Bold,
+                        lineHeight = 16.sp,
+                        fontSize = 16.sp,
+                        modifier = Modifier
+                            .align(Alignment.Top)
                     )
-                    Spacer(modifier = Modifier
-                        .height(12.dp))
-                    ItemQuantity()
+                    //Boton Eliminar
+                    IconButton(
+                        onClick = onRemoveClick,
+                        modifier = Modifier
+                            .size(18.dp)
+                            .align(Alignment.Top)
+                    ) {
+                        Icon(
+                            painter = painterResource(id= R.drawable.ic_remove),
+                            contentDescription = "Remove",
+                            tint = Gray40
+                        )
+                    }
                 }
-                Column(
-                    modifier = Modifier
-                        .align(Alignment.CenterVertically)
-                        .fillMaxWidth(),
-                    horizontalAlignment = Alignment.End
-                ){
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Column() {
                         Text(
-                            text = price,
+                            text = quantityInfo,
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 14.sp,
+                            color = Color.Gray
+                        )
+                        Spacer(modifier = Modifier
+                            .height(12.dp))
+                        ItemQuantity(onQuantityChange = onQuantityChange)
+                    }
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .fillMaxWidth(),
+                        horizontalAlignment = Alignment.End
+                    ){
+                        Text(
+                            text = "$currency " + String.format(Locale.US,"%.2f",price),
                             fontWeight = FontWeight.Bold,
                             fontSize = 16.sp,
                             modifier = Modifier.align(Alignment.End)
                         )
-
+                    }
                 }
-
-
             }
-
-
-
         }
-
     }
+
 }

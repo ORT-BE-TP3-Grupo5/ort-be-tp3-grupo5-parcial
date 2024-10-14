@@ -21,7 +21,9 @@ import com.example.ortbetp3grupo5parcial.ui.components.QuantityButton
 
 
 @Composable
-fun ItemQuantity() {
+fun ItemQuantity(
+    onQuantityChange: (Int) -> Unit
+) {
     var value by remember { mutableStateOf(1) }
 
     Row(
@@ -30,8 +32,13 @@ fun ItemQuantity() {
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         // Botón de decremento (-)
-        QuantityButton(onClick = { if (value > 1) value-- }, iconResource = R.drawable.ic_quantity_substract, invertedColors = true,
-            disabled = value == 1)
+        QuantityButton(onClick = {
+            if (value > 1){
+                value--
+                onQuantityChange(value)
+            }
+         }, iconResource = R.drawable.ic_quantity_substract, invertedColors = true,
+        disabled = value == 1)
 
         // Valor numérico entre los botones
         Text(
@@ -40,6 +47,9 @@ fun ItemQuantity() {
             fontWeight =  FontWeight.Bold
         )
         // Botón de incremento (+)
-        QuantityButton(onClick = { value++ }, invertedColors = true)
+        QuantityButton(onClick = {
+            value++
+            onQuantityChange(value)
+        }, invertedColors = true)
     }
 }
