@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.R
-import com.example.ortbetp3grupo5parcial.screens.forgotPassword.forgotPasswordRoute
+import com.example.ortbetp3grupo5parcial.screens.location.selectLocationRoute
 import com.example.ortbetp3grupo5parcial.screens.privacypolicy.privacyPolicyRoute
 import com.example.ortbetp3grupo5parcial.screens.signin.signInRoute
 import com.example.ortbetp3grupo5parcial.screens.termsofservice.termsOfServiceRoute
@@ -113,7 +112,7 @@ fun SignUpScreen(navController: NavController) {
             SubmitReusableButton(
                 buttonText = "Sing Up",
                 onClick = {
-                    navController.navigate(forgotPasswordRoute)
+                    navController.navigate(selectLocationRoute)
                 }
             )
 
