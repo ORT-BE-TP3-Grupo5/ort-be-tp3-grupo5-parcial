@@ -34,6 +34,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.R
 import com.example.ortbetp3grupo5parcial.screens.forgotPassword.forgotPasswordRoute
+import com.example.ortbetp3grupo5parcial.screens.home.homeRoute
 import com.example.ortbetp3grupo5parcial.screens.singup.signUpRoute
 import com.example.ortbetp3grupo5parcial.ui.components.CustomTextPair
 import com.example.ortbetp3grupo5parcial.ui.components.NectarInputField
@@ -126,7 +127,7 @@ fun SignInScreen(navController: NavController, loginViewModel: LoginViewModel = 
                 loginResult?.let { result ->
                     when {
                         result.isSuccess -> {
-                            navController.navigate("homeScreen") {
+                            navController.navigate(homeRoute) {
                                 popUpTo(navController.graph.startDestinationId) { inclusive = true }
                             }
                         }

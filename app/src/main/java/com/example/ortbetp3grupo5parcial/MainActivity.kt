@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.example.ortbetp3grupo5parcial.screens.account.accountRouteScreen
 import com.example.ortbetp3grupo5parcial.screens.cart.cartScreen
 import com.example.ortbetp3grupo5parcial.screens.categories.categoriesScreen
 import com.example.ortbetp3grupo5parcial.screens.explore.exploreScreen
@@ -33,18 +34,19 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(
                     navController = navController,
-                    startDestination = splashRoute // Inicia en la pantalla Splash
+                    startDestination = splashRoute
                 ) {
-                    splashScreen(navController)    // Ruta Splash
-                    onboardingScreen(navController) // Ruta Onboarding
-                    signInScreen(navController)    // Ruta SignIn
+                    splashScreen(navController)
+                    onboardingScreen(navController)
+                    signInScreen(navController)
                     forgotPasswordScreen(navController)
                     signUpScreen(navController)
                     cartScreen(navController)
+                    termsOfServiceScreen(navController)
                     orderReviewScreen(navController)
-                    termsOfServiceScreen(navController)  // Ruta de Términos de Servicio
                     privacyPolicyScreen(navController)
                     selectLocationScreen(navController)
+                    accountRouteScreen(navController)
                     homeScreen(navController)
                     exploreScreen(navController)
                     searchScreen(navController)

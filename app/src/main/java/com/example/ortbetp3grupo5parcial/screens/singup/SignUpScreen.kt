@@ -107,7 +107,7 @@ fun SignUpScreen(navController: NavController) {
 
         Box(
             modifier = Modifier
-                .offset(x = 25.dp, y = 716.75.dp)
+                .offset(x = 25.dp, y = 712.75.dp)
         ) {
             SubmitReusableButton(
                 buttonText = "Sing Up",
@@ -122,12 +122,11 @@ fun SignUpScreen(navController: NavController) {
             firstText = "Already have an account?",
             secondText = "Sign In",
             modifier = Modifier
-                .offset(x = 86.49.dp, y = 800.75.dp),
+                .offset(x = 86.49.dp, y = 787.75.dp),
             onSecondTextClick = {
                 navController.navigate(signInRoute)
             }
         )
-
     }
 }
 
