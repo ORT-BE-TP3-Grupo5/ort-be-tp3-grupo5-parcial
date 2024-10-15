@@ -188,7 +188,7 @@ fun <T> CustomDropdownMenu(
             trailingIcon = {
                 IconButton(onClick = { expanded = !expanded }) {
                     Icon(
-                        painter = painterResource(id = R.drawable.desplegable), // Reemplaza por tu icono
+                        painter = painterResource(id = R.drawable.desplegable),
                         contentDescription = "Icono personalizado desplegable",
                         modifier = Modifier.size(width = 10.dp, height = 15.dp)
                     )

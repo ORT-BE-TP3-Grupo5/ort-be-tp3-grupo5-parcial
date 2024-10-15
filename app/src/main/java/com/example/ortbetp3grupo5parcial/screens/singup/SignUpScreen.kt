@@ -122,7 +122,7 @@ fun SignUpScreen(navController: NavController) {
             firstText = "Already have an account?",
             secondText = "Sign In",
             modifier = Modifier
-                .offset(x = 86.49.dp, y = 787.75.dp),
+                .offset(x = 86.49.dp, y = 807.75.dp),
             onSecondTextClick = {
                 navController.navigate(signInRoute)
             }
