@@ -91,11 +91,18 @@ fun FiltersModal(onDismiss: () -> Unit) {
                     CategoryCheckbox("Ifad")
                     CategoryCheckbox("Kazi Farmas")
                 }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 36.dp),
+                    horizontalArrangement = Arrangement.Center
+                ){
+                    SubmitReusableButton(
+                        onClick = { onDismiss() },
+                        buttonText = "Apply Filter",
+                    )
+                }
 
-                SubmitReusableButton(
-                    onClick = { onDismiss() },
-                    buttonText = "Apply Filter",
-                )
             }
         }
     }
