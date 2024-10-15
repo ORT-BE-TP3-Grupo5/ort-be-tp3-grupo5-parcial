@@ -1,5 +1,6 @@
 package com.example.ortbetp3grupo5parcial.ui.components.checkout
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ortbetp3grupo5parcial.R
@@ -47,13 +54,14 @@ fun CheckoutConfirmationModal(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 24.dp)
+                    .padding(bottom = 24.dp, start = 16.dp, end = 16.dp)
 
             ) {
                 Text(
                     text = "Checkout",
                     fontSize = 24.sp,
                     color = Gray80,
+                    fontFamily = FontFamily(Font(R.font.poppins_medium)),
                     modifier = Modifier
                         .padding( horizontal = 16.dp)
                         .weight(1f)
@@ -75,34 +83,33 @@ fun CheckoutConfirmationModal(
                 CheckoutItem(
                     label = "Delivery",
                     value = "Select Method",
-                    onClick = onDeliveryClick
+                    onClick = onDeliveryClick,
+                    modifier = Modifier.padding(vertical = 8.dp)
                 )
                 CheckoutItemDivider()
                 CheckoutItem(
                     label = "Payment",
                     imageResource =  R.drawable.ic_card,
                     imageContentDescription = "Selected Payment Method",
-                    onClick = onPaymentClick
+                    onClick = onPaymentClick,
+                    modifier = Modifier.padding(vertical = 8.dp)
                 )
                 CheckoutItemDivider()
                 CheckoutItem(
                     label = "Promo Code",
                     value = "Pick discount",
-                    onClick = onPromoCodeClick
+                    onClick = onPromoCodeClick,
+                    modifier = Modifier.padding(vertical = 8.dp)
                 )
                 CheckoutItemDivider()
                 CheckoutItem(
                     label = "Total Cost",
                     value = String.format(Locale.US, "%.2f", totalCost),
-                    onClick = onTotalCostClick
+                    onClick = onTotalCostClick,
+                    modifier = Modifier.padding(vertical = 8.dp)
                 )
                 CheckoutItemDivider()
-                Text(
-                    text = "By placing an order you agree to our Terms and Conditions",
-                    fontSize = 14.sp,
-                    color = Gray60,
-                    modifier = Modifier.padding(16.dp)
-                )
+                TermsAndConditionsText(modifier = Modifier.padding(16.dp).fillMaxWidth(0.8f))
                 Box(modifier = Modifier.padding(16.dp)) {
                     SubmitReusableButton(buttonText = "Place Order", onClick = onConfirmation)
                 }
@@ -118,5 +125,42 @@ fun CheckoutItemDivider(){
         thickness = 1.dp,
         modifier = Modifier
             .padding(horizontal = 24.dp)
+    )
+}
+
+@Composable
+fun TermsAndConditionsText( modifier: Modifier = Modifier, onClick: () -> Unit = {}){
+    val termsAndConditionsText = buildAnnotatedString {
+        append("By placing an order you agree to our ")
+
+        // Estilo para "Terms"
+        withStyle(style = SpanStyle(
+            color = Gray80,
+            fontWeight = FontWeight.SemiBold,
+        )
+        ) {
+            append("Terms")
+        }
+
+        append(" And ")
+
+        // Estilo para "Conditions"
+        withStyle(style = SpanStyle(
+            color = Gray80,
+            fontWeight = FontWeight.SemiBold,
+        )) {
+            append("Conditions")
+        }
+    }
+
+    Text(
+        text = termsAndConditionsText,
+        fontSize = 14.sp,
+        lineHeight = 21.sp,
+        fontFamily = FontFamily(Font(R.font.poppins_regular)),
+        color = Gray60,
+        modifier = modifier.clickable {
+            onClick()
+        }
     )
 }
