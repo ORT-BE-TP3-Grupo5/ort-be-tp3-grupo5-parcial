@@ -26,6 +26,7 @@ import com.example.ortbetp3grupo5parcial.R
 import com.example.ortbetp3grupo5parcial.ui.components.Header
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.ortbetp3grupo5parcial.ui.components.Footer
@@ -33,6 +34,7 @@ import com.example.ortbetp3grupo5parcial.ui.theme.Gray20
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray60
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray80
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray90
+import com.example.ortbetp3grupo5parcial.ui.theme.Green40
 
 
 @Composable
@@ -135,7 +137,7 @@ fun AccountProfile(
         Column(
             modifier = Modifier.weight(1f)
         ) {
-            Row(){
+            Row(verticalAlignment = Alignment.CenterVertically){
                 Text(
                     text = name,
                     fontSize = 20.sp,
@@ -145,12 +147,13 @@ fun AccountProfile(
                 )
                 IconButton(
                     onClick = onClick,
+                    modifier = Modifier.padding(start = 4.dp)
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_edit),
-                        contentDescription = "editar perfil",
-                        modifier = Modifier
-                            .size(15.dp)
+                        contentDescription = "Editar perfil",
+                        tint = Green40,
+                        modifier = Modifier.size(18.dp)
                     )
                 }
             }

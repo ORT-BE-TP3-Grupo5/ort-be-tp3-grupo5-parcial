@@ -41,6 +41,7 @@ import com.example.ortbetp3grupo5parcial.data.AreaRepository
 import com.example.ortbetp3grupo5parcial.data.ZonaRepository
 import com.example.ortbetp3grupo5parcial.models.Area
 import com.example.ortbetp3grupo5parcial.models.Zona
+import com.example.ortbetp3grupo5parcial.screens.home.homeRoute
 import com.example.ortbetp3grupo5parcial.screens.singup.signUpRoute
 import com.example.ortbetp3grupo5parcial.ui.components.SubmitReusableButton
 
@@ -234,7 +235,7 @@ fun LocationButton(navController: NavController) {
             buttonWidth = 364,
             buttonHeight = 67,
             onClick = {
-                navController.navigate("homeScreen")
+                navController.navigate(homeRoute)
             }
         )
     }
