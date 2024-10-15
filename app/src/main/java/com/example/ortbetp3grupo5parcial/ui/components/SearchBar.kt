@@ -22,7 +22,7 @@ import com.example.ortbetp3grupo5parcial.R
 import kotlinx.coroutines.launch
 
 @Composable
-fun Search(navController: NavController) {
+fun Search(navController: NavController, onFilterClick: () -> Unit) {
     var searchQuery by remember { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
     val coroutineScope = rememberCoroutineScope()
@@ -91,7 +91,7 @@ fun Search(navController: NavController) {
                 modifier = Modifier
                     .size(17.dp)
                     .clickable {
-                        // Acción del filtro
+                        onFilterClick()
                     }
             )
         }
