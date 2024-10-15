@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,42 +28,54 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import com.example.ortbetp3grupo5parcial.screens.home.homeRoute
 import com.example.ortbetp3grupo5parcial.ui.components.Header
+import com.example.ortbetp3grupo5parcial.ui.theme.Gray15
+import com.example.ortbetp3grupo5parcial.ui.theme.Gray80
 
 @Composable
 fun ProductDetailScreen(navController: NavController) {
     Scaffold(
         topBar = {
             Header(
-                text = "Shop",
+                text = "Product Detail",
                 onClickLeft = { navController.popBackStack() }, // Acción de navegación
                 iconLeft = R.drawable.ic_back
             )
         }
-    ) { innerPadding -> // Usar innerPadding para manejar padding del Scaffold
+    ) { innerPadding ->
         val product = ProductDetailRepository().getProduct()
-        val context = LocalContext.current // Para mostrar el Toast
+        val context = LocalContext.current
 
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding) // Aplicar el innerPadding
+                .padding(innerPadding)
+                .background(Color.White)
         ) {
-            // Contenido principal de la pantalla
+
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
-                    .padding(bottom = 70.dp) // Deja espacio para el botón "Add To Basket"
+                    .padding(bottom = 70.dp)
             ) {
                 // Carrusel de imágenes
                 Box {
-                    CustomImageCarousel()
+                    CustomImageCarousel(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(307.dp)
+                            .background(Gray15)
+                    )
 
                     // Ícono de compartir superpuesto en la parte superior derecha
                     Image(
@@ -92,8 +103,11 @@ fun ProductDetailScreen(navController: NavController) {
                 ) {
                     Text(
                         text = product.name,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.SemiBold,
+                        fontFamily = FontFamily(Font(R.font.poppins_medium)),
+                        color = Gray80,
                         fontSize = 24.sp,
+                        lineHeight = 18.sp,
                         modifier = Modifier.weight(1f)
                     )
 
@@ -112,8 +126,9 @@ fun ProductDetailScreen(navController: NavController) {
                 // Detalle del producto (peso)
                 Text(
                     text = product.unit,
-                    fontSize = 14.sp,
-                    color = Color.Gray,
+                    fontSize = 15.sp,
+                    fontFamily = FontFamily(Font(R.font.poppins_medium)),
+                    color = Gray60,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
 
@@ -136,17 +151,19 @@ fun ProductDetailScreen(navController: NavController) {
                     Text(
                         text = product.price,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
+                        color = Gray80,
+                        fontFamily = FontFamily(Font(R.font.poppins_medium)),
+                        fontSize = 24.sp
                     )
                 }
 
-                Divider(
+                HorizontalDivider(
                     color = Gray20,
                     thickness = 1.dp,
                     modifier = Modifier.padding(vertical = 12.dp, horizontal = 16.dp)
                 )
 
-                // Sección de detalles del producto
+
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -154,11 +171,7 @@ fun ProductDetailScreen(navController: NavController) {
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "Product Detail",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                    ProductDetailSubheader(text = "Product Detail")
                     Image(
                         painter = painterResource(id = R.drawable.arrow_down),
                         contentDescription = "Arrow",
@@ -166,37 +179,35 @@ fun ProductDetailScreen(navController: NavController) {
                     )
                 }
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
                     text = product.description,
-                    fontSize = 14.sp,
-                    lineHeight = 20.sp,
+                    fontSize = 13.sp,
+                    lineHeight = 21.sp,
+                    fontFamily = FontFamily(Font(R.font.poppins_medium)),
                     modifier = Modifier.padding(horizontal = 16.dp),
                     color = Gray60
                 )
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(12.dp))
 
-                Divider(
+                HorizontalDivider(
                     color = Gray20,
                     thickness = 1.dp,
-                    modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp)
+                    modifier = Modifier.padding(horizontal = 16.dp)
                 )
 
                 // Sección de Nutrición
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 16.dp),
+                        .padding(horizontal = 16.dp, vertical = 12.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "Nutritions",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                    ProductDetailSubheader(text = "Nutritions")
+
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         // Imagen de nutrición
                         Image(
@@ -214,31 +225,25 @@ fun ProductDetailScreen(navController: NavController) {
                     }
                 }
 
-                Divider(
+                HorizontalDivider(
                     color = Gray20,
                     thickness = 1.dp,
-                    modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp)
+                    modifier = Modifier.padding(horizontal = 16.dp)
                 )
 
-                // Sección de Review
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 16.dp),
+                        .padding(horizontal = 16.dp, vertical = 12.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "Review",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                    ProductDetailSubheader(text = "Review")
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        // Estrellas de review
                         Image(
                             painter = painterResource(id = product.reviewImage),
                             contentDescription = "Review Stars",
-                            modifier = Modifier.size(35.dp),
+                            modifier = Modifier.size(93.dp, 14.dp),
                             contentScale = ContentScale.Fit
                         )
                         Spacer(modifier = Modifier.width(8.dp))
@@ -250,15 +255,16 @@ fun ProductDetailScreen(navController: NavController) {
                     }
                 }
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(70.dp))
             }
 
-            // Botón "Add to Basket"
+
+            //Boton de agregar al carrito
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
-                    .padding(bottom = 16.dp),
+                    .padding(bottom = 36.dp),
                 contentAlignment = Alignment.Center
             ) {
                 SubmitReusableButton(
@@ -273,7 +279,9 @@ fun ProductDetailScreen(navController: NavController) {
 }
 
 @Composable
-fun CustomImageCarousel() {
+fun CustomImageCarousel(
+    modifier: Modifier = Modifier
+) {
     val product = ProductDetailRepository().getProduct()
     val images = product.productImages
 
@@ -282,17 +290,16 @@ fun CustomImageCarousel() {
     val dragThreshold = 100f
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .aspectRatio(1f) // Mantener aspecto cuadrado
-            .clip(RoundedCornerShape(8.dp)) // Bordes redondeados
-            .height(80.dp) // Altura reducida del carrusel
     ) {
+
         Image(
             painter = painterResource(id = images[currentImageIndex]),
             contentDescription = "Carousel Image",
             modifier = Modifier
                 .fillMaxSize()
+                .padding(40.dp)
                 .align(Alignment.Center),
             contentScale = ContentScale.Fit
         )
@@ -300,7 +307,7 @@ fun CustomImageCarousel() {
         Row(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 8.dp), // Reducir el padding
+                .padding(vertical = 24.dp),
             horizontalArrangement = Arrangement.Center
         ) {
             images.forEachIndexed { index, _ ->
@@ -339,4 +346,14 @@ fun CustomImageCarousel() {
 }
 
 
+@Composable
+fun ProductDetailSubheader(
+    text: String
+){
+    Text(
+        text = text,
+        fontSize = 16.sp,
+        fontFamily = FontFamily(Font(R.font.poppins_semibold)),
+    )
+}
 
