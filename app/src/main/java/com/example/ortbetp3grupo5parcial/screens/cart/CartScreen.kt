@@ -26,6 +26,7 @@ import com.example.ortbetp3grupo5parcial.ui.components.cart.CartItem
 import com.example.ortbetp3grupo5parcial.ui.components.checkout.CheckoutConfirmationModal
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray20
 import com.example.ortbetp3grupo5parcial.data.CartProductsRepository
+import com.example.ortbetp3grupo5parcial.ui.components.OrderFailedDialog
 import java.util.Locale
 
 @Composable
@@ -33,6 +34,17 @@ fun CartScreen(navController: NavController) {
 
     var items by remember { mutableStateOf(CartProductsRepository.getCartItems())}
     val totalCost by remember { derivedStateOf { items.sumOf { it.price * it.quantity }.toDouble()}}
+
+    var showOrderFailedDialog by remember { mutableStateOf(false) }
+    when{
+        showOrderFailedDialog -> OrderFailedDialog(
+            onDismiss = { showOrderFailedDialog = false },
+            onRetry = {
+                showOrderFailedDialog = false
+                navController.navigate("orderReview")
+            }
+        )
+    }
 
     var showCheckoutConfirmationModal by remember { mutableStateOf(false) }
     when{
@@ -43,6 +55,9 @@ fun CartScreen(navController: NavController) {
                 navController.navigate("orderReview")
             },
             totalCost = totalCost,
+            onPaymentClick = {
+                showOrderFailedDialog = true
+            }
         )
     }
 
