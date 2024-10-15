@@ -9,10 +9,12 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.ortbetp3grupo5parcial.R
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray80
 
 /**
@@ -59,7 +61,7 @@ fun ButtonGroup(
                 text = backLabel,
                 color = Gray80,
                 fontSize = 18.sp,
-                fontWeight = FontWeight.Normal,
+                fontFamily = FontFamily(Font(R.font.poppins_medium)),
                 textAlign = TextAlign.Center
             )
         }
