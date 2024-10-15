@@ -1,28 +1,35 @@
-package com.example.ortbetp3grupo5parcial.screens.explore
+package com.example.ortbetp3grupo5parcial.screens.search
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.ortbetp3grupo5parcial.ui.components.CategoryItem
-import com.example.ortbetp3grupo5parcial.ui.components.Search
-import androidx.compose.material3.Scaffold
 import com.example.ortbetp3grupo5parcial.R
+import com.example.ortbetp3grupo5parcial.data.EggRepository
+import com.example.ortbetp3grupo5parcial.screens.explore.exploreRoute
 import com.example.ortbetp3grupo5parcial.ui.components.Footer
-import com.example.ortbetp3grupo5parcial.data.CategoryRepository
 import com.example.ortbetp3grupo5parcial.ui.components.Header
+import com.example.ortbetp3grupo5parcial.ui.components.Search
+import com.example.ortbetp3grupo5parcial.ui.components.product.ProductCard
 
 @Composable
-fun ExploreScreen(navController: NavController) {
+fun SearchScreen(navController: NavController) {
     Scaffold(
         topBar = {
             Header(
-                text = "Find Products",
-                onClickLeft = { navController.popBackStack() },
+                text = "Search",
+                onClickLeft = { navController.navigate(exploreRoute) },
                 iconLeft = R.drawable.ic_leading
             )
         },
@@ -39,16 +46,15 @@ fun ExploreScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(8.dp))
             Search(navController = navController)
             Spacer(modifier = Modifier.height(16.dp))
-            CategoriesList(navController = navController)
+            ProductsList()
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
-
 @Composable
-fun CategoriesList(navController: NavController) {
-    val categoryRepository  = CategoryRepository()
-    val categories = categoryRepository.getAllData()
+fun ProductsList() {
+    val eggRepository = EggRepository()
+    val products = eggRepository.getAllData()
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         modifier = Modifier.fillMaxSize(),
@@ -56,17 +62,10 @@ fun CategoriesList(navController: NavController) {
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(categories) { category ->
-            CategoryItem(
-                backgroundColor = category.backgroundColor,
-                borderColor = category.borderColor,
-                imageResId = category.imageResId,
-                title = category.title,
-                onClick = {
-                    navController.navigate(category.route)
-                }
+        items(products) { product ->
+            ProductCard(
+                product = product
             )
         }
     }
 }
-

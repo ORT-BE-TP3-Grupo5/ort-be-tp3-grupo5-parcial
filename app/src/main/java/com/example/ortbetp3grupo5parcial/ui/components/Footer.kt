@@ -19,6 +19,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.ortbetp3grupo5parcial.R
 import com.example.ortbetp3grupo5parcial.screens.account.accountRoute
+import com.example.ortbetp3grupo5parcial.screens.cart.cartRoute
+import com.example.ortbetp3grupo5parcial.screens.explore.exploreRoute
+import com.example.ortbetp3grupo5parcial.screens.home.homeRoute
 
 @Composable
 fun Footer(navController: NavController) {
@@ -52,7 +55,7 @@ fun Footer(navController: NavController) {
                         color = Color(0xFF181725)
                     )
                 },
-                selected = currentRoute == "shop",
+                selected = currentRoute == "home",
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = Color(0xFF4CAF50),
                     unselectedIconColor = Color.Black,
@@ -61,7 +64,7 @@ fun Footer(navController: NavController) {
                     indicatorColor = Color.Transparent
                 ),
                 onClick = {
-                    navController.navigate("shop") {
+                    navController.navigate(homeRoute) {
                         popUpTo(navController.graph.startDestinationId) { saveState = true }
                         launchSingleTop = true
                         restoreState = true
@@ -87,7 +90,7 @@ fun Footer(navController: NavController) {
                     indicatorColor = Color.Transparent
                 ),
                 onClick = {
-                    navController.navigate("explore") {
+                    navController.navigate(exploreRoute) {
                         popUpTo(navController.graph.startDestinationId) { saveState = true }
                         launchSingleTop = true
                         restoreState = true
@@ -113,7 +116,7 @@ fun Footer(navController: NavController) {
                     indicatorColor = Color.Transparent
                 ),
                 onClick = {
-                    navController.navigate("cart") {
+                    navController.navigate(cartRoute) {
                         popUpTo(navController.graph.startDestinationId) { saveState = true }
                         launchSingleTop = true
                         restoreState = true
