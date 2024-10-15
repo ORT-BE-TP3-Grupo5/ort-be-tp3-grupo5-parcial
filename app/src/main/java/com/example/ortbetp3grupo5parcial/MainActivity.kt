@@ -20,13 +20,14 @@ import com.example.ortbetp3grupo5parcial.screens.singup.signUpScreen
 import com.example.ortbetp3grupo5parcial.screens.home.homeScreen
 import com.example.ortbetp3grupo5parcial.screens.search.searchScreen
 import com.example.ortbetp3grupo5parcial.screens.order.orderReviewScreen
+import com.example.ortbetp3grupo5parcial.screens.productDetail.productDetailScreen
 import com.example.ortbetp3grupo5parcial.screens.splash.splashRoute
 import com.example.ortbetp3grupo5parcial.screens.splash.splashScreen
 import com.example.ortbetp3grupo5parcial.screens.termsofservice.termsOfServiceScreen
 import com.example.ortbetp3grupo5parcial.ui.theme.OrtBeTp3Grupo5ParcialTheme
 
 
-class MainActivity : ComponentActivity() {
+class gMainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -53,6 +54,7 @@ class MainActivity : ComponentActivity() {
                     exploreScreen(navController)
                     searchScreen(navController)
                     categoriesScreen(navController)
+                    productDetailScreen(navController)
 
                 }
             }
