@@ -39,13 +39,13 @@ fun CategoriesScreen(navController: NavController) {
                 .padding(8.dp)
         ) {
             Spacer(modifier = Modifier.height(8.dp))
-            ProductsList()
+            ProductsList(navController)
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
 @Composable
-fun ProductsList() {
+fun ProductsList(navController: NavController) {
     val beverageRepository  = BeverageRepository()
     val products = beverageRepository.getAllData()
     LazyVerticalGrid(
@@ -57,7 +57,8 @@ fun ProductsList() {
     ) {
         items(products) { product ->
             ProductCard(
-                product = product
+                product = product,
+                navController = navController
             )
         }
     }

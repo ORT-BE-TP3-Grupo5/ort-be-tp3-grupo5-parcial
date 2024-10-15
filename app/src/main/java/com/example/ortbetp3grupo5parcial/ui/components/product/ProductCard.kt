@@ -28,7 +28,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.R
+import com.example.ortbetp3grupo5parcial.screens.productDetail.productDetailRoute
 import com.example.ortbetp3grupo5parcial.ui.components.QuantityButton
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray20
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray60
@@ -43,7 +45,8 @@ data class Product(val name: String, val price: String, val imageRes: Int, val d
 fun ProductCard(
     product: Product,
     modifier : Modifier = Modifier,
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
+    navController: NavController
 ){
     Box(
         modifier = modifier
@@ -115,7 +118,9 @@ fun ProductCard(
                     )
 
                     // Botón verde con el icono "+"
-                    QuantityButton(onClick = onClick)
+                    QuantityButton(onClick = {
+                        navController.navigate(productDetailRoute)
+                    })
                 }
             }
         }

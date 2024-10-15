@@ -13,6 +13,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
+import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.R
 import com.example.ortbetp3grupo5parcial.models.Product
 import com.example.ortbetp3grupo5parcial.ui.theme.Green40
@@ -20,7 +21,8 @@ import com.example.ortbetp3grupo5parcial.ui.theme.Green40
 @Composable
 fun ProductSection(
     title: String,           // Título de la sección (Ej: "Exclusive Offer", "Best Selling")
-    products: List<Product>  // Lista de productos a mostrar en la sección
+    products: List<Product>,  // Lista de productos a mostrar en la sección
+    navController: NavController
 ) {
     Column(modifier = Modifier.padding(16.dp)) {
         Row(
@@ -51,7 +53,7 @@ fun ProductSection(
         // Lista horizontal para mostrar los productos
         LazyRow {
             items(products) { product ->
-                ProductCard(product, modifier = Modifier.padding(end = 12.dp))
+                ProductCard(product, modifier = Modifier.padding(end = 12.dp), navController = navController)
             }
         }
     }

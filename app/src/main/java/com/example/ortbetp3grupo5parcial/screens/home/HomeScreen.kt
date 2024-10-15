@@ -77,13 +77,15 @@ fun HomeScreen(navController: NavController) {
                     // Sección de "Exclusive Offer"
                     ProductSection(
                         title = "Exclusive Offer",
-                        products = products
+                        products = products,
+                        navController = navController
                     )
 
                     // Sección de "Best Selling"
                     ProductSection(
                         title = "Best Selling",
-                        products = products2
+                        products = products2,
+                        navController = navController
                     )
                 }
             }
