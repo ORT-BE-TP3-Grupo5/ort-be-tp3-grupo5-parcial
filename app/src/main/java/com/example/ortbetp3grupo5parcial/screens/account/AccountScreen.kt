@@ -13,10 +13,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -28,14 +29,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.R
 import com.example.ortbetp3grupo5parcial.ui.components.Header
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.ortbetp3grupo5parcial.screens.signin.signInRoute
 import com.example.ortbetp3grupo5parcial.ui.components.Footer
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray20
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray60
@@ -77,6 +80,7 @@ fun AccountScreen(navController: NavController) {
             ) }
         }
 
+        LogOutButton(navController)
         Footer(navController = navController)
     }
 }
@@ -211,3 +215,40 @@ fun AccountProfile(
         }
     }
 }
+
+
+@Composable
+fun LogOutButton(navController: NavController) {
+    Button(
+        onClick = {
+            navController.navigate(signInRoute)
+        },
+        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF2F3F2)),
+        shape = RoundedCornerShape(topStart = 19.dp, bottomEnd = 0.dp, bottomStart = 0.dp, topEnd = 0.dp),
+        modifier = Modifier
+            .width(364.dp)
+            .height(67.dp)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_got_out),
+                contentDescription = "Log Out Icon",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(24.dp)
+                    .padding(end = 8.dp)
+            )
+            Text(
+                text = "Log Out",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF4CAF50)
+            )
+        }
+    }
+}
+
