@@ -3,7 +3,6 @@ package com.example.ortbetp3grupo5parcial.screens.signin
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -128,7 +127,8 @@ fun SignInScreen(navController: NavController, loginViewModel: LoginViewModel = 
                     when {
                         result.isSuccess -> {
                             navController.navigate(homeRoute) {
-                                popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                                popUpTo(0) { inclusive = true }
+                                launchSingleTop = true
                             }
                         }
 

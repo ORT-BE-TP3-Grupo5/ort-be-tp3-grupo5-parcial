@@ -110,7 +110,7 @@ fun SignUpScreen(navController: NavController) {
                 .offset(x = 25.dp, y = 712.75.dp)
         ) {
             SubmitReusableButton(
-                buttonText = "Sing Up",
+                buttonText = "Sign Up",
                 onClick = {
                     navController.navigate(selectLocationRoute)
                 }
