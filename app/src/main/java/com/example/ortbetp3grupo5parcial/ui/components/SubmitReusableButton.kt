@@ -58,7 +58,6 @@ fun SubmitReusableButton(
                     text = buttonText,
                     color = textColor,
                     fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily(Font(R.font.poppins_medium)),
                     textAlign = TextAlign.Center
                 )

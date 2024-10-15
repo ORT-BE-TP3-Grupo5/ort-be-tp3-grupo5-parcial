@@ -54,8 +54,8 @@ fun OrderReviewScreen(navController: NavController) {
             ButtonGroup(
                 submitLabel = "Track Order",
                 backLabel = "Back to home",
-                onSubmit = { navController.navigate("checkout")},
-                onBack = { navController.navigate("home") }
+                onSubmit = { navController.popBackStack("home", inclusive = false)},
+                onBack = { navController.popBackStack("home", inclusive = false)}
             )
             Spacer(modifier = Modifier.height(24.dp))
         }

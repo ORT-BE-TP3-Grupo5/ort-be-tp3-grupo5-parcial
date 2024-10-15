@@ -33,6 +33,11 @@ fun CheckoutConfirmationModal(
     onDismissRequest: () -> Unit,
     onConfirmation: () -> Unit,
     totalCost: Double = 0.00,
+    onDeliveryClick: () -> Unit = {},
+    onPaymentClick: () -> Unit = {},
+    onPromoCodeClick: () -> Unit = {},
+    onTotalCostClick: () -> Unit = {},
+
 ) {
 
     ModalBottomSheet(onDismissRequest = onDismissRequest) {
@@ -70,26 +75,26 @@ fun CheckoutConfirmationModal(
                 CheckoutItem(
                     label = "Delivery",
                     value = "Select Method",
-                    onClick = {}
+                    onClick = onDeliveryClick
                 )
                 CheckoutItemDivider()
                 CheckoutItem(
                     label = "Payment",
                     imageResource =  R.drawable.ic_card,
                     imageContentDescription = "Selected Payment Method",
-                    onClick = {}
+                    onClick = onPaymentClick
                 )
                 CheckoutItemDivider()
                 CheckoutItem(
                     label = "Promo Code",
                     value = "Pick discount",
-                    onClick = {}
+                    onClick = onPromoCodeClick
                 )
                 CheckoutItemDivider()
                 CheckoutItem(
                     label = "Total Cost",
                     value = String.format(Locale.US, "%.2f", totalCost),
-                    onClick = {}
+                    onClick = onTotalCostClick
                 )
                 CheckoutItemDivider()
                 Text(
