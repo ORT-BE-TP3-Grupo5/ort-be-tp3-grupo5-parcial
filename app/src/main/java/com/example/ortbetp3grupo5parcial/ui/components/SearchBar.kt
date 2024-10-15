@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.R
+import com.example.ortbetp3grupo5parcial.screens.search.searchRoute
 import kotlinx.coroutines.launch
 
 @Composable
@@ -47,7 +48,11 @@ fun Search(navController: NavController, onFilterClick: () -> Unit) {
                 painter = painterResource(id = R.drawable.ic_search),
                 contentDescription = "Search Icon",
                 tint = Color(0xFF181B19),
-                modifier = Modifier.size(18.dp)
+                modifier = Modifier
+                    .size(18.dp)
+                    .clickable {
+                        navController.navigate(searchRoute)
+                    },
             )
             Spacer(modifier = Modifier.width(8.dp))
             TextField(
@@ -69,7 +74,7 @@ fun Search(navController: NavController, onFilterClick: () -> Unit) {
                     onSearch = {
                         focusManager.clearFocus()
                         coroutineScope.launch {
-                            navController.navigate("Search")
+                            navController.navigate(searchRoute)
                         }
                     }
                 ),

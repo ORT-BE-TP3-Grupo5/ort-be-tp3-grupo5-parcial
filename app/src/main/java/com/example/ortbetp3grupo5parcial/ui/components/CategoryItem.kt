@@ -29,8 +29,8 @@ fun CategoryItem(
 ) {
     Box(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(180.dp)
+            .width(174.5.dp)
+            .height(189.11.dp)
             .background(color = backgroundColor, shape = RoundedCornerShape(12.dp))
             .border(width = 1.dp, color = borderColor, shape = RoundedCornerShape(12.dp))
             .clickable { onClick() },
@@ -47,16 +47,18 @@ fun CategoryItem(
                 painter = painterResource(id = imageResId),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(80.dp),
+                    .size(100.dp)
+                    .height(60.dp),
                 contentScale = ContentScale.Fit
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
+                modifier = Modifier.weight(1f).padding(top = 8.dp),
                 text = title,
-                fontSize = 15.sp,
+                fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF181725),
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
     }
