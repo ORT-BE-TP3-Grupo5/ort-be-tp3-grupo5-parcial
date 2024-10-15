@@ -45,6 +45,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.ortbetp3grupo5parcial.screens.home.homeRoute
 import com.example.ortbetp3grupo5parcial.screens.signin.signInRoute
 import com.example.ortbetp3grupo5parcial.ui.components.Footer
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray15
@@ -234,7 +235,10 @@ fun AccountProfile(
 fun LogOutButton(navController: NavController) {
     Button(
         onClick = {
-            navController.navigate(signInRoute)
+            navController.navigate(signInRoute) {
+                popUpTo(0) { inclusive = true }
+                launchSingleTop = true
+            }
         },
         colors = ButtonDefaults.buttonColors(
             containerColor = Gray15
