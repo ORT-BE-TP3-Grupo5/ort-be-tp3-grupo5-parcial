@@ -16,8 +16,15 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -39,6 +46,8 @@ import com.example.ortbetp3grupo5parcial.ui.theme.Green40
 
 @Composable
 fun AccountScreen(navController: NavController) {
+    var isDarkMode by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -47,22 +56,56 @@ fun AccountScreen(navController: NavController) {
             iconLeft = R.drawable.ic_leading,
             onClickLeft = { }
         )
-        AccountProfile( name ="Pepe", email= "juanpepe@gmail.com", imageResource = R.drawable.bakery, onClick = { })
+        AccountProfile(
+            name = "Afsar Hossen",
+            email = "Imshuvo97@gmail.com",
+            imageResource = R.drawable.perfil,
+            onClick = { }
+        )
         Spacer(modifier = Modifier.height(18.dp))
         HorizontalDivider(color = Gray20, thickness = 1.dp)
-        LazyColumn(Modifier.weight(1f))  {
-            item{ AccountItem( iconResource = R.drawable.ic_orders, label = "Orders", onClick = { }) }
-            item{ AccountItem( iconResource = R.drawable.my_details_icon, label = "My Details", onClick = { }) }
-            item{ AccountItem( iconResource = R.drawable.ic_delivery_address, label = "Delivery Address", onClick = { }) }
-            item{ AccountItem( iconResource = R.drawable.ic_payment_methods, label = "Payment Methods", onClick = { }) }
-            item{ AccountItem( iconResource = R.drawable.promo_cord_icon, label = "Promo Card", onClick = { }) }
-            item{ AccountItem( iconResource = R.drawable.notificationsl_icon, label = "Notifications", onClick = { }) }
-            item{ AccountItem( iconResource = R.drawable.help_icon, label = "Help", onClick = { }) }
+
+        LazyColumn(Modifier.weight(1f)) {
+            item { AccountItem(iconResource = R.drawable.ic_orders, label = "Orders", onClick = { }) }
+            item { AccountItem(iconResource = R.drawable.my_details_icon, label = "My Details", onClick = { }) }
+            item { AccountItem(iconResource = R.drawable.ic_delivery_address, label = "Delivery Address", onClick = { }) }
+            item { AccountItem(iconResource = R.drawable.ic_payment_methods, label = "Payment Methods", onClick = { }) }
+            item { AccountItem(iconResource = R.drawable.promo_cord_icon, label = "Promo Card", onClick = { }) }
+            item { AccountItem(iconResource = R.drawable.notificationsl_icon, label = "Notifications", onClick = { }) }
+            item { AccountItem(iconResource = R.drawable.help_icon, label = "Help", onClick = { }) }
+            item {  DarkMode(isDarkMode = isDarkMode, onCheckedChange = { isDarkMode = it }
+            ) }
         }
+
         Footer(navController = navController)
     }
+}
 
-
+@Composable
+fun DarkMode(isDarkMode: Boolean, onCheckedChange: (Boolean) -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Spacer(modifier = Modifier.width(56.dp))
+        Text(text = "Dark mode",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Normal,
+            modifier = Modifier
+            .weight(1f))
+        Switch(
+            checked = isDarkMode,
+            onCheckedChange = { onCheckedChange(it) },
+            colors = SwitchDefaults.colors(
+                uncheckedThumbColor = Color.White,
+                uncheckedTrackColor = Color(0xFFC0C0C0),
+                uncheckedBorderColor = Color.Transparent,
+                checkedBorderColor = Color.Transparent
+        ))
+    }
+    HorizontalDivider(color = Gray20, thickness = 1.dp, modifier = Modifier.padding(horizontal = 24.dp) )
 }
 
 @Composable
