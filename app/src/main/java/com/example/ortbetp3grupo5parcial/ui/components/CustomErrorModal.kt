@@ -37,7 +37,7 @@ import com.example.ortbetp3grupo5parcial.ui.theme.Gray10
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray80
 
 @Composable
-fun OrderFailedDialog(onDismiss: () -> Unit, onRetry: () -> Unit) {
+fun OrderFailedDialog(onDismiss: () -> Unit, onRetry: () -> Unit, onBackToHome: () -> Unit = {}) {
     Dialog(
         onDismissRequest = onDismiss,
     ) {
@@ -94,7 +94,7 @@ fun OrderFailedDialog(onDismiss: () -> Unit, onRetry: () -> Unit) {
                         onSubmit = onRetry,
                         submitLabel = "Please Try Again",
                         backLabel = "Back to home",
-                        onBack = onDismiss,
+                        onBack = onBackToHome,
                         buttonWidth = 313
                     )
                 }
