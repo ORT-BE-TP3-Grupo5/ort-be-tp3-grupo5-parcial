@@ -17,10 +17,12 @@ import com.example.ortbetp3grupo5parcial.screens.signin.signInScreen
 import com.example.ortbetp3grupo5parcial.screens.singup.signUpScreen
 import com.example.ortbetp3grupo5parcial.screens.home.homeScreen
 import com.example.ortbetp3grupo5parcial.screens.search.searchScreen
+import com.example.ortbetp3grupo5parcial.screens.order.orderReviewScreen
 import com.example.ortbetp3grupo5parcial.screens.splash.splashRoute
 import com.example.ortbetp3grupo5parcial.screens.splash.splashScreen
 import com.example.ortbetp3grupo5parcial.screens.termsofservice.termsOfServiceScreen
 import com.example.ortbetp3grupo5parcial.ui.theme.OrtBeTp3Grupo5ParcialTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +41,7 @@ class MainActivity : ComponentActivity() {
                     forgotPasswordScreen(navController)
                     signUpScreen(navController)
                     cartScreen(navController)
+                    orderReviewScreen(navController)
                     termsOfServiceScreen(navController)  // Ruta de Términos de Servicio
                     privacyPolicyScreen(navController)
                     selectLocationScreen(navController)
