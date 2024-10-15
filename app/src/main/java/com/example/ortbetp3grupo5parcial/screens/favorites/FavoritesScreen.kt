@@ -34,6 +34,10 @@ fun FavoritesScreen(navController: NavController) {
     when{
         showOrderFailedDialog -> OrderFailedDialog(
             onDismiss = { showOrderFailedDialog = false },
+            onBackToHome = {
+                showOrderFailedDialog = false
+                navController.popBackStack("home", inclusive = false)
+            },
             onRetry = {
                 showOrderFailedDialog = false
                 navController.navigate("orderReview")
