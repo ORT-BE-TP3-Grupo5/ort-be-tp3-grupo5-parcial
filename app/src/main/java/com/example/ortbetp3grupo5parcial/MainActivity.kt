@@ -13,6 +13,7 @@ import com.example.ortbetp3grupo5parcial.screens.onboarding.onboardingScreen
 import com.example.ortbetp3grupo5parcial.screens.privacypolicy.privacyPolicyScreen
 import com.example.ortbetp3grupo5parcial.screens.signin.signInScreen
 import com.example.ortbetp3grupo5parcial.screens.singup.signUpScreen
+import com.example.ortbetp3grupo5parcial.screens.home.homeScreen
 import com.example.ortbetp3grupo5parcial.screens.splash.splashRoute
 import com.example.ortbetp3grupo5parcial.screens.splash.splashScreen
 import com.example.ortbetp3grupo5parcial.screens.termsofservice.termsOfServiceScreen
@@ -38,9 +39,12 @@ class MainActivity : ComponentActivity() {
                     termsOfServiceScreen(navController)  // Ruta de Términos de Servicio
                     privacyPolicyScreen(navController)
                     selectLocationScreen(navController)
+                    homeScreen(navController)
 
                 }
             }
         }
     }
 }
+
+
