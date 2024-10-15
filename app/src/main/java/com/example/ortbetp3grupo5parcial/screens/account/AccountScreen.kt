@@ -1,7 +1,9 @@
 package com.example.ortbetp3grupo5parcial.screens.account
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,7 +14,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -35,11 +39,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.screens.signin.signInRoute
 import com.example.ortbetp3grupo5parcial.ui.components.Footer
+import com.example.ortbetp3grupo5parcial.ui.theme.Gray15
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray20
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray60
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray80
@@ -68,19 +76,23 @@ fun AccountScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(18.dp))
         HorizontalDivider(color = Gray20, thickness = 1.dp)
 
-        LazyColumn(Modifier.weight(1f)) {
-            item { AccountItem(iconResource = R.drawable.ic_orders, label = "Orders", onClick = { }) }
-            item { AccountItem(iconResource = R.drawable.my_details_icon, label = "My Details", onClick = { }) }
-            item { AccountItem(iconResource = R.drawable.ic_delivery_address, label = "Delivery Address", onClick = { }) }
-            item { AccountItem(iconResource = R.drawable.ic_payment_methods, label = "Payment Methods", onClick = { }) }
-            item { AccountItem(iconResource = R.drawable.promo_cord_icon, label = "Promo Card", onClick = { }) }
-            item { AccountItem(iconResource = R.drawable.notificationsl_icon, label = "Notifications", onClick = { }) }
-            item { AccountItem(iconResource = R.drawable.help_icon, label = "Help", onClick = { }) }
-            item {  DarkMode(isDarkMode = isDarkMode, onCheckedChange = { isDarkMode = it }
-            ) }
+        Column(Modifier.weight(1f).verticalScroll(rememberScrollState())) {
+            AccountItem(iconResource = R.drawable.ic_orders, label = "Orders", onClick = { })
+            AccountItem(iconResource = R.drawable.my_details_icon, label = "My Details", onClick = { })
+            AccountItem(iconResource = R.drawable.ic_delivery_address, label = "Delivery Address", onClick = { })
+            AccountItem(iconResource = R.drawable.ic_payment_methods, label = "Payment Methods", onClick = { })
+            AccountItem(iconResource = R.drawable.promo_cord_icon, label = "Promo Card", onClick = { })
+            AccountItem(iconResource = R.drawable.notificationsl_icon, label = "Notifications", onClick = { })
+            AccountItem(iconResource = R.drawable.help_icon, label = "Help", onClick = { })
+            DarkMode(isDarkMode = isDarkMode, onCheckedChange = { isDarkMode = it })
+            Spacer(modifier = Modifier.height(48.dp))
+            Row( modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                LogOutButton(navController)
+            }
+            Spacer(modifier = Modifier.height(16.dp))
         }
-
-        LogOutButton(navController)
         Footer(navController = navController)
     }
 }
@@ -96,9 +108,9 @@ fun DarkMode(isDarkMode: Boolean, onCheckedChange: (Boolean) -> Unit) {
         Spacer(modifier = Modifier.width(56.dp))
         Text(text = "Dark mode",
             fontSize = 18.sp,
-            fontWeight = FontWeight.Normal,
+            fontFamily = FontFamily(Font(R.font.poppins_medium)),
             modifier = Modifier
-            .weight(1f))
+                .weight(1f))
         Switch(
             checked = isDarkMode,
             onCheckedChange = { onCheckedChange(it) },
@@ -107,7 +119,7 @@ fun DarkMode(isDarkMode: Boolean, onCheckedChange: (Boolean) -> Unit) {
                 uncheckedTrackColor = Color(0xFFC0C0C0),
                 uncheckedBorderColor = Color.Transparent,
                 checkedBorderColor = Color.Transparent
-        ))
+            ))
     }
     HorizontalDivider(color = Gray20, thickness = 1.dp, modifier = Modifier.padding(horizontal = 24.dp) )
 }
@@ -137,6 +149,7 @@ fun AccountItem(
             text = label,
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
+            fontFamily = FontFamily(Font(R.font.poppins_medium)),
             color = Gray90,
             modifier = Modifier
                 .weight(1f)
@@ -190,7 +203,7 @@ fun AccountProfile(
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     color = Gray80,
-                    modifier = Modifier //.padding(start = 16.dp)
+                    fontFamily = FontFamily(Font(R.font.poppins_medium)),
                 )
                 IconButton(
                     onClick = onClick,
@@ -223,31 +236,43 @@ fun LogOutButton(navController: NavController) {
         onClick = {
             navController.navigate(signInRoute)
         },
-        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF2F3F2)),
-        shape = RoundedCornerShape(topStart = 19.dp, bottomEnd = 0.dp, bottomStart = 0.dp, topEnd = 0.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Gray15
+        ),
         modifier = Modifier
             .width(364.dp)
             .height(67.dp)
+            .clip(RoundedCornerShape(19.dp))
+            .background(Gray15)
+
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_got_out),
-                contentDescription = "Log Out Icon",
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .size(24.dp)
-                    .padding(end = 8.dp)
-            )
-            Text(
-                text = "Log Out",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF4CAF50)
-            )
+        Box( modifier = Modifier.fillMaxWidth()) {
+            Row(modifier = Modifier
+                .align(Alignment.Center),
+                horizontalArrangement = Arrangement.Center) {
+                Text(
+                    text = "Log Out",
+                    color = Green40,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily(Font(R.font.poppins_medium)),
+                    textAlign = TextAlign.Center
+                )
+            }
+
+            Row(
+                modifier = Modifier.align(Alignment.CenterStart)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_got_out),
+                    contentDescription = "Log Out Icon",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .size(24.dp)
+                        .padding(end = 8.dp)
+                )
+            }
+
         }
     }
 }
