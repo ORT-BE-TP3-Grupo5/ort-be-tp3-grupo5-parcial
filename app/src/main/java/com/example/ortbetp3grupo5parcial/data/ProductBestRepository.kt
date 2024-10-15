@@ -6,8 +6,10 @@ import com.example.ortbetp3grupo5parcial.models.Product
 
 class ProductBestRepository {
     fun getAllData(): List<Product> {
-        return listOf(Product("Bell Pepper Red", "$2.99","7pcs, Priceg", R.drawable.pepper),
-            Product("Ginger", "$1.99","7pcs, Priceg", R.drawable.ginger),
-            Product("Unknown Best Seller", "$4.49","7pcs, Priceg", R.drawable.pepper))
-
-    }}
+        return listOf(
+            Product("Bell Pepper Red", "$2.99","7pcs, Price", R.drawable.pepper),
+            Product("Ginger", "$1.99","7pcs, Price", R.drawable.ginger),
+            Product("Bell Pepper Std", "$4.49","7pcs, Priceg", R.drawable.pepper)
+        )
+    }
+}

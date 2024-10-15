@@ -19,6 +19,7 @@ import com.example.ortbetp3grupo5parcial.R
 import com.example.ortbetp3grupo5parcial.data.FavoriteProductRepository
 import com.example.ortbetp3grupo5parcial.ui.components.Footer
 import com.example.ortbetp3grupo5parcial.ui.components.Header
+import com.example.ortbetp3grupo5parcial.ui.components.OrderFailedDialog
 import com.example.ortbetp3grupo5parcial.ui.components.SubmitReusableButton
 import com.example.ortbetp3grupo5parcial.ui.components.favorites.FavoriteProduct
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray20
@@ -29,11 +30,22 @@ fun FavoritesScreen(navController: NavController) {
     val favoriteProductRepository = FavoriteProductRepository()
     val products = favoriteProductRepository.getAllData()
 
+    var showOrderFailedDialog by remember { mutableStateOf(false) }
+    when{
+        showOrderFailedDialog -> OrderFailedDialog(
+            onDismiss = { showOrderFailedDialog = false },
+            onRetry = {
+                showOrderFailedDialog = false
+                navController.navigate("orderReview")
+            }
+        )
+    }
+
     Scaffold(
         topBar = {
             Header(
                 text = "Favorite",
-                onClickLeft = { navController.popBackStack() },
+                onClickLeft = {},
                 iconLeft = R.drawable.ic_leading,
             )
         },
@@ -68,7 +80,10 @@ fun FavoritesScreen(navController: NavController) {
                     .padding(bottom = 16.dp), // Añade padding en la parte inferior del botón
                 contentAlignment = Alignment.Center
             ) {
-                SubmitReusableButton(onClick = {}, "Add All To Cart")
+                SubmitReusableButton(
+                    buttonText = "Add All To Cart",
+                    onClick = {showOrderFailedDialog = true}
+                )
             }
         }
     }
