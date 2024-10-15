@@ -33,8 +33,14 @@ import com.example.ortbetp3grupo5parcial.ui.theme.OrtBeTp3Grupo5ParcialTheme
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    // Scroll vertical para toda la pantalla
 
+    val productOfferRepository  = ProductOfferRepository()
+    val products = productOfferRepository.getAllData()
+
+    val productBestRepository  = ProductBestRepository()
+    val products2 = productBestRepository.getAllData()
+
+    // Scroll vertical para toda la pantalla
     Scaffold(
         topBar = {
             Header(
@@ -47,42 +53,39 @@ fun HomeScreen(navController: NavController) {
             Footer(navController = navController)
         }
     ) { innerPadding ->
-        Column(
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(8.dp)
                 .background(Color.White)
-        ) {
+        ){
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .verticalScroll(rememberScrollState())
+                    .padding(innerPadding)
+                    .padding(8.dp)
+                    .background(Color.White)
             ) {
-                // Sección de cabecera
-                HeaderSection()
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    // Sección de cabecera
+                    HeaderSection()
 
 
 
-                // Sección de "Exclusive Offer"
+                    // Sección de "Exclusive Offer"
+                    ProductSection(
+                        title = "Exclusive Offer",
+                        products = products
+                    )
 
-                val productOfferRepository  = ProductOfferRepository()
-                val products = productOfferRepository.getAllData()
-
-                ProductSection(
-                    title = "Exclusive Offer",
-                    products = products
-                )
-
-                // Sección de "Best Selling"
-
-                val productBestRepository  = ProductBestRepository()
-                val products2 = productBestRepository.getAllData()
-
-                ProductSection(
-                    title = "Best Selling",
-                    products = products2
-                )
+                    // Sección de "Best Selling"
+                    ProductSection(
+                        title = "Best Selling",
+                        products = products2
+                    )
+                }
             }
         }
     }

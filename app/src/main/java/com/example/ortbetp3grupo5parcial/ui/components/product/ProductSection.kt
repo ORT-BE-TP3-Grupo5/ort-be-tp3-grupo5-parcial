@@ -51,7 +51,7 @@ fun ProductSection(
         // Lista horizontal para mostrar los productos
         LazyRow {
             items(products) { product ->
-                ProductCard(product)
+                ProductCard(product, modifier = Modifier.padding(end = 12.dp))
             }
         }
     }
