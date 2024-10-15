@@ -74,6 +74,8 @@ dependencies {
     implementation(libs.androidx.foundation.layout.android)
     implementation(libs.litert.support.api)
     implementation(libs.androidx.storage)
+    implementation(libs.androidx.ui.test.android)
+    implementation(libs.androidx.foundation.layout.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
