@@ -27,7 +27,7 @@ fun CategoriesScreen(navController: NavController) {
         topBar = {
             Header(
                 text = "Beverages",
-                onClickLeft = { navController.navigate(exploreRoute) },
+                onClickLeft = { navController.navigateUp() },
                 iconLeft = R.drawable.ic_back
             )
         },

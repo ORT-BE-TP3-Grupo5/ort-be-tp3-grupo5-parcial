@@ -37,7 +37,7 @@ fun SearchScreen(navController: NavController) {
         topBar = {
             Header(
                 text = "Search",
-                onClickLeft = { navController.navigate(exploreRoute) },
+                onClickLeft = { navController.navigateUp() },
                 iconLeft = R.drawable.ic_leading
             )
         },
