@@ -45,7 +45,7 @@ fun FavoritesScreen(navController: NavController) {
         topBar = {
             Header(
                 text = "Favorite",
-                onClickLeft = { navController.popBackStack() },
+                onClickLeft = {},
                 iconLeft = R.drawable.ic_leading,
             )
         },

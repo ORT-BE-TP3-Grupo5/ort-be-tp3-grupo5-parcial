@@ -39,7 +39,7 @@ fun HomeScreen(navController: NavController) {
         topBar = {
             Header(
                 text = "Shop",
-                onClickLeft = { navController.popBackStack() },
+                onClickLeft = {},
                 iconLeft = R.drawable.ic_leading,
                     )
                  },

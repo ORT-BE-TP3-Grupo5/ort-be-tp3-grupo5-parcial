@@ -64,7 +64,7 @@ fun CartScreen(navController: NavController) {
     Column(modifier = Modifier.fillMaxSize()) {
         Header(
             text= "My Cart",
-            onClickLeft = { navController.popBackStack() },
+            onClickLeft = { },
             iconLeft = R.drawable.ic_leading
         )
         HorizontalDivider(color = Gray20, thickness = 1.dp, modifier = Modifier.padding(top = 24.dp))
