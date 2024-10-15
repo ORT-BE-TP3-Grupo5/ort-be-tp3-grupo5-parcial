@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.ortbetp3grupo5parcial.screens.cart.cartScreen
+import com.example.ortbetp3grupo5parcial.screens.favorites.favoritesScreen
 import com.example.ortbetp3grupo5parcial.screens.forgotPassword.forgotPasswordScreen
 import com.example.ortbetp3grupo5parcial.screens.location.selectLocationScreen
 import com.example.ortbetp3grupo5parcial.screens.onboarding.onboardingScreen
@@ -40,6 +41,8 @@ class MainActivity : ComponentActivity() {
                     privacyPolicyScreen(navController)
                     selectLocationScreen(navController)
                     homeScreen(navController)
+                    favoritesScreen(navController)
+
 
                 }
             }
