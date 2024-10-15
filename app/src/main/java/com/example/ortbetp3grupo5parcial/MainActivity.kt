@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.ortbetp3grupo5parcial.screens.account.accountRouteScreen
 import com.example.ortbetp3grupo5parcial.screens.cart.cartScreen
+import com.example.ortbetp3grupo5parcial.screens.favorites.favoritesScreen
 import com.example.ortbetp3grupo5parcial.screens.categories.categoriesScreen
 import com.example.ortbetp3grupo5parcial.screens.explore.exploreScreen
 import com.example.ortbetp3grupo5parcial.screens.forgotPassword.forgotPasswordScreen
@@ -48,9 +49,11 @@ class MainActivity : ComponentActivity() {
                     selectLocationScreen(navController)
                     accountRouteScreen(navController)
                     homeScreen(navController)
+                    favoritesScreen(navController)
                     exploreScreen(navController)
                     searchScreen(navController)
                     categoriesScreen(navController)
+
                 }
             }
         }
