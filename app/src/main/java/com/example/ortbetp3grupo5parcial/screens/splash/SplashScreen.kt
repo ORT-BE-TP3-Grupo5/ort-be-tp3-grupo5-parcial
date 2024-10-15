@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.R
+import com.example.ortbetp3grupo5parcial.ui.theme.Green40
 import kotlinx.coroutines.delay
 
 @Composable
@@ -35,7 +36,7 @@ fun SplashScreenContent() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF34A853)), // Fondo verde
+            .background(Green40), // Fondo verde
         contentAlignment = Alignment.Center
     ) {
         Image(
