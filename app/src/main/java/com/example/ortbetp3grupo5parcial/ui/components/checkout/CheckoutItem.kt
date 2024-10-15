@@ -15,6 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ortbetp3grupo5parcial.R
@@ -24,13 +26,14 @@ import com.example.ortbetp3grupo5parcial.ui.theme.Gray80
 @Composable
 fun CheckoutItem(
     label: String,
+    modifier: Modifier = Modifier,
     value: String = "",
     imageResource: Int? =  null,
     imageContentDescription: String = "",
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ){
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -38,6 +41,7 @@ fun CheckoutItem(
             text = label,
             fontSize = 18.sp,
             color = Gray60,
+            fontFamily = FontFamily(Font(R.font.poppins_medium)),
             modifier = Modifier
                 .weight(1f)
                 .padding(start = 20.dp)
@@ -46,6 +50,7 @@ fun CheckoutItem(
             text = value,
             fontSize = 16.sp,
             color = Gray80,
+            fontFamily = FontFamily(Font(R.font.poppins_medium))
         )
         if(value != "" && imageResource != null){
             Spacer(modifier = Modifier.width(16.dp))
