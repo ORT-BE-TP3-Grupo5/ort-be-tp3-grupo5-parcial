@@ -28,7 +28,7 @@ import com.example.ortbetp3grupo5parcial.ui.theme.Gray40
 import java.util.Locale
 
 @Composable
-fun CartItem(
+fun CartProductListItem(
     imageResource: Int,
     name: String,
     quantityInfo: String,

@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -22,11 +20,11 @@ import com.example.ortbetp3grupo5parcial.R
 import com.example.ortbetp3grupo5parcial.ui.components.Footer
 import com.example.ortbetp3grupo5parcial.ui.components.Header
 import com.example.ortbetp3grupo5parcial.ui.components.SubmitReusableButton
-import com.example.ortbetp3grupo5parcial.ui.components.cart.CartItem
 import com.example.ortbetp3grupo5parcial.ui.components.checkout.CheckoutConfirmationModal
 import com.example.ortbetp3grupo5parcial.ui.theme.Gray20
 import com.example.ortbetp3grupo5parcial.data.CartProductsRepository
 import com.example.ortbetp3grupo5parcial.ui.components.OrderFailedDialog
+import com.example.ortbetp3grupo5parcial.ui.components.cart.CartProductList
 import java.util.Locale
 
 @Composable
@@ -74,29 +72,15 @@ fun CartScreen(navController: NavController) {
         HorizontalDivider(color = Gray20, thickness = 1.dp, modifier = Modifier.padding(top = 24.dp))
 
         Row(modifier = Modifier.weight(1f)) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding( horizontal = 16.dp)
-            ) {
-                // Lista de productos
-                itemsIndexed(items) { index, item ->
-                    CartItem(
-                        imageResource = item.imageResource,
-                        name = item.name,
-                        quantityInfo = item.quantityInfo,
-                        price = item.price,
-                        onRemoveClick = { items = items.toMutableList().apply { removeAt(index) }},
-                        onQuantityChange = { newQuantity ->
-                            items = items.toMutableList().apply {
-                                this[index] = this[index].copy(quantity = newQuantity)
-                            }
-                        },
-                        modifier = Modifier.padding(vertical = 24.dp)
-                    )
-                    HorizontalDivider(color = Gray20, thickness = 1.dp)
+            CartProductList(
+                items = items,
+                onRemoveClick = { index -> items = items.toMutableList().apply { removeAt(index) }},
+                onQuantityChange = { index, newQuantity ->
+                    items = items.toMutableList().apply {
+                        this[index] = this[index].copy(quantity = newQuantity)
+                    }
                 }
-            }
+            )
 
         }
         Row(
@@ -114,3 +98,6 @@ fun CartScreen(navController: NavController) {
     }
 
 }
+
+
+
