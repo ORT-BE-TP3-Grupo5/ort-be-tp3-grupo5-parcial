@@ -38,7 +38,10 @@ fun CartScreen(navController: NavController) {
     when{
         showCheckoutConfirmationModal -> CheckoutConfirmationModal(
             onDismissRequest = { showCheckoutConfirmationModal = false },
-            onConfirmation = { navController.navigate("checkout") },
+            onConfirmation = {
+                showCheckoutConfirmationModal = false
+                navController.navigate("orderReview")
+            },
             totalCost = totalCost,
         )
     }

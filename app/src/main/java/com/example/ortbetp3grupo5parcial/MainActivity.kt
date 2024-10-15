@@ -14,6 +14,7 @@ import com.example.ortbetp3grupo5parcial.screens.privacypolicy.privacyPolicyScre
 import com.example.ortbetp3grupo5parcial.screens.signin.signInScreen
 import com.example.ortbetp3grupo5parcial.screens.singup.signUpScreen
 import com.example.ortbetp3grupo5parcial.screens.home.homeScreen
+import com.example.ortbetp3grupo5parcial.screens.order.orderReviewScreen
 import com.example.ortbetp3grupo5parcial.screens.splash.splashRoute
 import com.example.ortbetp3grupo5parcial.screens.splash.splashScreen
 import com.example.ortbetp3grupo5parcial.screens.termsofservice.termsOfServiceScreen
@@ -36,6 +37,7 @@ class MainActivity : ComponentActivity() {
                     forgotPasswordScreen(navController)
                     signUpScreen(navController)
                     cartScreen(navController)
+                    orderReviewScreen(navController)
                     termsOfServiceScreen(navController)  // Ruta de Términos de Servicio
                     privacyPolicyScreen(navController)
                     selectLocationScreen(navController)
