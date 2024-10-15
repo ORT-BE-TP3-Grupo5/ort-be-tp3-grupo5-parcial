@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.R
 import com.example.ortbetp3grupo5parcial.data.EggRepository
+import com.example.ortbetp3grupo5parcial.models.Product
 import com.example.ortbetp3grupo5parcial.screens.explore.exploreRoute
 import com.example.ortbetp3grupo5parcial.ui.components.FiltersModal.FiltersModal
 import com.example.ortbetp3grupo5parcial.ui.components.Footer
@@ -54,7 +55,11 @@ fun SearchScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(8.dp))
             Search(navController = navController, onFilterClick = { isFilterDialogOpen = true })
             Spacer(modifier = Modifier.height(16.dp))
-            ProductsList()
+            ProductsList(
+                onProductClick = { product ->
+                    navController.navigate("productDetail")
+                }
+            )
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
@@ -63,7 +68,9 @@ fun SearchScreen(navController: NavController) {
     }
 }
 @Composable
-fun ProductsList() {
+fun ProductsList(
+    onProductClick: (Product) -> Unit
+) {
     val eggRepository = EggRepository()
     val products = eggRepository.getAllData()
     LazyVerticalGrid(
@@ -75,7 +82,9 @@ fun ProductsList() {
     ) {
         items(products) { product ->
             ProductCard(
-                product = product
+                product = product,
+                onClick = { onProductClick(product) },
+
             )
         }
     }

@@ -20,7 +20,8 @@ import com.example.ortbetp3grupo5parcial.ui.theme.Green40
 @Composable
 fun ProductSection(
     title: String,           // Título de la sección (Ej: "Exclusive Offer", "Best Selling")
-    products: List<Product>  // Lista de productos a mostrar en la sección
+    products: List<Product>,  // Lista de productos a mostrar en la sección
+    onProductClick: (Product) -> Unit
 ) {
     Column(modifier = Modifier.padding(16.dp)) {
         Row(
@@ -51,7 +52,12 @@ fun ProductSection(
         // Lista horizontal para mostrar los productos
         LazyRow {
             items(products) { product ->
-                ProductCard(product, modifier = Modifier.padding(end = 12.dp))
+                ProductCard(
+                    product,
+                    onClick = { onProductClick(product) },
+                    modifier = Modifier
+                        .padding(end = 12.dp)
+                )
             }
         }
     }

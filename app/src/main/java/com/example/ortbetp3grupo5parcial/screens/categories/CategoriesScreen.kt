@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.ortbetp3grupo5parcial.R
 import com.example.ortbetp3grupo5parcial.data.BeverageRepository
+import com.example.ortbetp3grupo5parcial.models.Product
 import com.example.ortbetp3grupo5parcial.screens.explore.exploreRoute
 import com.example.ortbetp3grupo5parcial.ui.components.Header
 import com.example.ortbetp3grupo5parcial.ui.components.product.ProductCard
@@ -39,13 +40,19 @@ fun CategoriesScreen(navController: NavController) {
                 .padding(8.dp)
         ) {
             Spacer(modifier = Modifier.height(8.dp))
-            ProductsList()
+            ProductsList(
+                onProductClick = { product ->
+                    navController.navigate("productDetail")
+                }
+            )
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
 @Composable
-fun ProductsList() {
+fun ProductsList(
+    onProductClick: (Product) -> Unit
+) {
     val beverageRepository  = BeverageRepository()
     val products = beverageRepository.getAllData()
     LazyVerticalGrid(
@@ -57,7 +64,8 @@ fun ProductsList() {
     ) {
         items(products) { product ->
             ProductCard(
-                product = product
+                product = product,
+                onClick = { onProductClick(product) },
             )
         }
     }

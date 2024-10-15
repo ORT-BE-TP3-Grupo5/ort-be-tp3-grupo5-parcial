@@ -77,13 +77,15 @@ fun HomeScreen(navController: NavController) {
                     // Sección de "Exclusive Offer"
                     ProductSection(
                         title = "Exclusive Offer",
-                        products = products
+                        products = products,
+                        onProductClick = { navController.navigate("productDetail")}
                     )
 
                     // Sección de "Best Selling"
                     ProductSection(
                         title = "Best Selling",
-                        products = products2
+                        products = products2,
+                        onProductClick = { navController.navigate("productDetail")}
                     )
                 }
             }
