@@ -27,7 +27,7 @@ import com.example.ortbetp3grupo5parcial.screens.termsofservice.termsOfServiceSc
 import com.example.ortbetp3grupo5parcial.ui.theme.OrtBeTp3Grupo5ParcialTheme
 
 
-class gMainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
